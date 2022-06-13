@@ -1,0 +1,27 @@
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-header"> Operations list</div>
+        <div class="card-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>AccountId</th>
+                        <th>Operation Date</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ao of accountOperations">
+                        <td>{{ao.id}}</td>
+                        <td>{{ao.operationDate}}</td>
+                        <td>{{ao.amount}}</td>
+                        <td>{{ao.type}}</td>
+                        <td>{{ao.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container mt-2">
+    <form [formGroup]="formMod" (ngSubmit)="findCustomers()">
+        <div class="input-group">
+            <label class="input-group-text"> KeyWord</label>
+            <input type="text" class="form-control" formControlName="keyWord">
+            <button class="btn btn-info">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form> 
+    <ng-container *ngIf="customers |async as listCustomers; else failureOrLoading" >
+        <div class="card spacer ">
+            <div class="card-header"> Customers List</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <!-- <th>Data Of Birth</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of customers | async">
+                            <td>{{c.id}}</td>
+                            <td>{{c.name}}</td>
+                            <td>{{c.email}}</td>
+                            <td>
+                                <button (click)="handleDeletCustomer(c)" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button (click)="handleCustomer(c.id)" class="btn btn-info">
+                                    View Profil
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template  #failureOrLoading>
+        <ng-container *ngIf="errorMessage; else loading">
+            <div class="text-danger">
+                {{errorMessage}}
+            </div>
+        </ng-container>
+        <ng-template #loading>
+            <div>
+                loading..
+            </div>
+        </ng-template>
+    </ng-template>
+</div>
